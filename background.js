@@ -34,7 +34,7 @@ async function keepbackground() {
   });
 const segmentation = await net.segmentPerson(canvas);
 const coloredPartImage = bodyPix.toMask(segmentation);
-const opacity = .5;
+const opacity = .9;
 const flipHorizontal = false;
 const maskBlurAmount = 10;
  bodyPix.drawMask(
@@ -57,7 +57,7 @@ canvas2.height = stream_settings.height;
     setInterval(()=> {
  ctx.drawImage(Video,0,0,stream_settings.width,stream_settings.height)
     keepbackground();
-},10)
+},20)
 }
 function videoError() {
   alert("something is wrong")

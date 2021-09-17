@@ -30,21 +30,41 @@ async function keepbackground() {
   // const ctx = canvas.getContext('2d');
   
   // Loading the model
-        const net = await bodyPix.load({
+        let net = await bodyPix.load({
     architecture: 'MobileNetV1',
     outputStride: 16,
     multiplier: 0.75,
     quantBytes: 2
   });
   // Segmentation
-const segmentation = await net.segmentPerson(canvas);
-const coloredPartImage = bodyPix.toMask(segmentation);
-const opacity = .5;
-const flipHorizontal = false;
-const maskBlurAmount = 10;
- bodyPix.drawMask(
-    canvas2, canvas, coloredPartImage, opacity, maskBlurAmount,
-    flipHorizontal)
+  const { data:map } = await net.segmentPerson(canvas, {
+    internalResolution: 'medium',
+  });
+  
+  
+  // Extracting image data
+  const { data:imgData } = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  
+  // Creating new image data
+  const newImg = ctx.createImageData(canvas.width, canvas.height);
+  const newImgData = newImg.data;
+  
+  for(let i=0; i<map.length; i++) {
+    //The data array stores four values for each pixel
+    const [r, g, b, a] = [imgData[i*4], imgData[i*4+1], imgData[i*4+2], imgData[i*4+3]];
+    
+    [
+      newImgData[i*4],
+      newImgData[i*4+1],
+      newImgData[i*4+2],
+      newImgData[i*4+3]
+    ] = !map[i] ? [(r)/5, (g)/5, (b)/5, 0] : [r, g, b, a];
+  }
+  
+
+  // Draw the new image back to canvas
+  ctx2.putImageData(newImg, 0, 0);
+  
 }
 
 navigator.getUserMedia=navigator.getUserMedia||navigator.webkitGetUserMedia||navigator.mozGetUserMedia||navigator.msGetUserMedia||navigator.oGetUserMedia;
@@ -62,7 +82,7 @@ canvas2.height = stream_settings.height;
     setInterval(()=> {
  ctx.drawImage(Video,0,0,stream_settings.width,stream_settings.height)
     keepbackground();
-},10)
+},20)
 }
 function videoError() {
   alert("something is wrong")

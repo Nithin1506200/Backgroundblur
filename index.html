@@ -20,12 +20,23 @@
         href=""
         type="icon/png"
     >
-
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.0"></script>
+    
     <title>Background Blur</title>
 </head>
 
 <body>
-
+    <video
+        style="display:none;"
+        autoplay="True"
+    ></video>
+    <canvas
+        style="display:none"
+        id="originalcam"
+    ></canvas>
+    <canvas id="mycams"></canvas>
+    <script src="background.js"></script>
 </body>
 
 </html>

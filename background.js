@@ -26,17 +26,12 @@
  * Remove background an image
  */
 async function keepbackground() {
-  // const canvas = document.querySelector('canvas');
-  // const ctx = canvas.getContext('2d');
-  
-  // Loading the model
         const net = await bodyPix.load({
     architecture: 'MobileNetV1',
     outputStride: 16,
     multiplier: 0.75,
     quantBytes: 2
   });
-  // Segmentation
 const segmentation = await net.segmentPerson(canvas);
 const coloredPartImage = bodyPix.toMask(segmentation);
 const opacity = .5;

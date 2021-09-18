@@ -49,7 +49,7 @@ let img1= new Image(100,100);
 img1.src=stream;
     setInterval(()=> {
  //ctx.drawImage(Video,0,0,stream_settings.width/2,stream_settings.height/2)
- ctx.drawImage(Video,0,0,300,300)
+ ctx.drawImage(Video,0,0,100,100)
     keepbackground();
 },10)
 }

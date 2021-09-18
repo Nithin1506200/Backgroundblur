@@ -43,8 +43,8 @@ function handleVideo(stream) {
    // canvas.height = stream_settings.height;
   //  canvas2.width=stream_settings.width;
 //canvas2.height = stream_settings.height;
-   canvas.width = 300;
-    canvas.height = 300;
+   canvas.width = 100;
+    canvas.height = 100;
 let img1= new Image(100,100);
 img1.src=stream;
     setInterval(()=> {

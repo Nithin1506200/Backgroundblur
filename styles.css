@@ -10,3 +10,9 @@ body {
  
 }
 
+canvas {
+  height: 300px;
+  width: 500px;
+  margin-top: 50px;
+  margin-left:50px;
+}

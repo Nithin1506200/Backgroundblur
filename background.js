@@ -37,9 +37,14 @@ const coloredPartImage = bodyPix.toMask(segmentation);
 const opacity = .9;
 const flipHorizontal = false;
 const maskBlurAmount = 10;
- bodyPix.drawMask(
-    canvas2, canvas, coloredPartImage, opacity, maskBlurAmount,
-    flipHorizontal)
+const backgroundBlurAmount = 3;
+const edgeBlurAmount = 3;
+// bodyPix.drawMask(
+  //  canvas2, canvas, coloredPartImage, opacity, maskBlurAmount,
+   // flipHorizontal)
+   bodyPix.drawBokehEffect( canvas2, canvas, segmentation, backgroundBlurAmount,
+    edgeBlurAmount,
+   flipHorizontal)
 }
 
 navigator.getUserMedia=navigator.getUserMedia||navigator.webkitGetUserMedia||navigator.mozGetUserMedia||navigator.msGetUserMedia||navigator.oGetUserMedia;
@@ -51,8 +56,8 @@ function handleVideo(stream) {
     let stream_settings = stream.getVideoTracks()[0].getSettings();
  //canvas.width = stream_settings.width;
    // canvas.height = stream_settings.height;
-    canvas2.width=stream_settings.width;
-canvas2.height = stream_settings.height;
+  //  canvas2.width=stream_settings.width;
+//canvas2.height = stream_settings.height;
    canvas.width = 300;
     canvas.height = 300;
 

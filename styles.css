@@ -7,10 +7,21 @@ body {
   margin: 0;
   height: 100vh;
   background-image: linear-gradient(red,yellow);
- 
+  padding: 50px;
 }
-
-canvas {
-  width:500px;
+.vidout {
+  width: 70%;
+  max-width: 700px;
+  height: 60%;
+  max-height: 700px;
+  border: rgb(154, 245, 218) 2px solid;
+}
+button {
+  margin: 2rem;
+  width: 4rem;
+  height: 2rem;
+}
+.mycams {
+  width: 300px;
   height: 300px;
 }
